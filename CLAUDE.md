@@ -45,7 +45,7 @@ agentic-auth/                    ← 저장소 루트 · Claude Code 실행 위�
 │       │   │                        #   · ScopeAuthorizer · ScopeCatalog · filter · handler
 │       │   └── util/                # JWTUtil · CustomJWTException
 │       ├── main/resources/          # application.properties · logback-spring.xml
-│       └── test/java/com/agenticauth/   # 9개 테스트 클래스 (47개 테스트)
+│       └── test/java/com/agenticauth/   # 10개 테스트 클래스 (54개 테스트)
 ├── front/                       ← 검증용 프론트엔드 (Vite + React + TS)
 │   └── src/                         # App.tsx · api.ts · types.ts
 ├── agent-example/               ← 위임 토큰을 쓰는 에이전트 스크립트 (Node, 의존성 없음)
