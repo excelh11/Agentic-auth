@@ -136,28 +136,3 @@ SPEC ──→ PLAN ──→ TASKS ──→ IMPLEMENT
 `agentic-spec`·`agentic-tasks` 는 `docs/` 만 쓰도록 지시받아서. 정의는 [`../.claude/agents/`](../.claude/agents) 참고.
 
 ---
-
-## 5. 알려진 결함
-
-[`../docs/1-SPEC.md`](../docs/1-SPEC.md)에 K1~K8로 기록해 두었다.
-
-**남아 있는 것**
-
-| # | 내용 |
-|---|---|
-| K4 | JWT 시크릿 키가 `JWTUtil`에 하드코딩 — 공개된 예시 키로 의도한 것 |
-| K6 | jjwt 0.11.5의 deprecated API 사용 |
-| K7 | `authorizeHttpRequests` 미설정 — URL 레벨 인가 없음 |
-| K8 | `checkExpiredToken()`이 `"Expired"`만 만료로 봐서, 형식이 깨진 토큰을 "아직 유효"로 판정 |
-
-**해결된 것**
-
-| # | 내용 | 조치 |
-|---|---|---|
-| K1 | `Authorization` 헤더가 null이면 NPE | `Bearer ` 접두어를 검사 전에 확인 · `log.warn`으로 원인 기록 |
-| K2 | 인증 실패도 HTTP 200 | `JWTCheckFilter` · `APILoginFailHandler` 모두 **401** |
-| K3 | JWT 예외에 `ResponseEntity.ok()` | `status(UNAUTHORIZED)` — **401** |
-| K5 | `pw`(BCrypt 해시)가 JWT claims에 포함 | claims에서 제거 · credentials에 `null` (**F1 응답 계약 변경**) |
-
-> 인증 실패는 이제 **401**로 나간다. 다만 프론트는 여전히 **본문의 에러 코드로 분기한다** —
-> 401 하나에 `ERROR_LOGIN` · `ERROR_ACCESS_TOKEN` · `Expired` · `INVALID_STRING`이 모두 들어오기 때문이다.
