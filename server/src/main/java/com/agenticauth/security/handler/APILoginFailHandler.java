@@ -1,0 +1,37 @@
+package com.agenticauth.security.handler;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
+
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
+import com.google.gson.Gson;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
+public class APILoginFailHandler implements AuthenticationFailureHandler{
+    
+    @Override
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) 
+    throws IOException, ServletException{
+        log.info("Login fail...."+ exception);
+
+        Gson gson = new Gson();
+
+        String jsonStr = gson.toJson(Map.of("error", "ERROR_LOGIN"));
+
+        // 로그인 실패도 인증 실패다 — JWTCheckFilter 와 같은 이유로 401을 싣는다.
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType("application/json; charset=UTF-8");
+
+        PrintWriter printWriter = response.getWriter();
+        printWriter.println(jsonStr);
+        printWriter.close();
+    }
+}

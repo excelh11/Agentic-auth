@@ -1,0 +1,15 @@
+{
+  "name": "agentic-auth-mcp-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP 서버 — Claude·Cursor 가 위임 토큰으로 agentic-auth API를 호출한다",
+  "scripts": {
+    "mint": "node mint-token.mjs",
+    "test": "node test-client.mjs",
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0"
+  }
+}

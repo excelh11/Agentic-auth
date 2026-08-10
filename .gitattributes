@@ -1,0 +1,16 @@
+# 기본은 git이 알아서 판별한다.
+* text=auto
+
+# gradlew 는 셸 스크립트다. CRLF 가 섞이면 리눅스·맥에서 실행되지 않는다.
+gradlew        text eol=lf
+*.sh           text eol=lf
+
+# 윈도우 배치 파일은 CRLF 여야 한다.
+*.bat          text eol=crlf
+*.cmd          text eol=crlf
+
+# 바이너리 — 줄바꿈 변환 금지
+*.png          binary
+*.jpg          binary
+*.pdf          binary
+*.jar          binary

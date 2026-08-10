@@ -1,0 +1,30 @@
+# 이 파일을 application.properties 로 복사한 뒤 값을 채운다.
+#   cp application.properties.example application.properties
+#
+# application.properties 는 .gitignore 에 걸려 있다. 커밋하지 않는다.
+
+server.port=8080
+
+spring.application.name=agentic-auth
+
+# ---------------------------------------------------------------
+# MariaDB
+#   DB/계정 생성은 db/schema.sql 참고
+#   테이블은 ddl-auto=update 가 자동 생성한다
+# ---------------------------------------------------------------
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+spring.datasource.url=jdbc:mariadb://localhost:3306/agenticauthdb
+spring.datasource.username=여기에_DB_계정
+spring.datasource.password=여기에_DB_비밀번호
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+logging.level.org.hibernate.SQL=info
+logging.level.org.springframework.security.web=trace
+
+# ---------------------------------------------------------------
+# F11 — 위임 토큰의 audience. 서버는 자신을 가리키지 않는 aud를 거부한다.
+# ---------------------------------------------------------------
+aauth.jwt.audience=agentic-auth-server

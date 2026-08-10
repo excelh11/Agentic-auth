@@ -1,0 +1,42 @@
+# ── 비밀정보 ────────────────────────────────────────────────
+# DB 접속 정보가 평문으로 들어 있다. 저장소에 올리지 않는다.
+# 새로 받는 사람은 application.properties.example 을 복사해서 채운다.
+**/src/main/resources/application.properties
+**/src/main/resources/application-*.properties
+!**/src/main/resources/application.properties.example
+
+*.pem
+*.key
+.env
+.env.*
+
+# ── Claude Code 로컬 설정 ───────────────────────────────────
+# 절대경로가 박힌 개인 권한 목록이다. 공유 대상이 아니다.
+# .claude/agents 와 .claude/commands 는 저장소의 일부이므로 제외하지 않는다.
+.claude/settings.local.json
+
+# ── 빌드 산출물 ─────────────────────────────────────────────
+build/
+.gradle/
+out/
+bin/
+dist/
+dist-ssr/
+node_modules/
+
+# ── 에디터 · OS ─────────────────────────────────────────────
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+Thumbs.db
+
+# ── 로그 ────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
