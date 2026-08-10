@@ -94,8 +94,8 @@ That one aimed to **"see with your own eyes where Spring Security + JWT blocks a
 | Unit of authority     | Role (`ROLE_USER`)              | Role **+ action-level scope** (`sample:read`)                  |
 | Revocation            | Impossible (no token revocation)| **Revoke one agent only** — the user is not logged out        |
 | Auditing              | Scattered logs                  | **Delegator + actor recorded as a pair**                      |
-| Known defects         | 4 of K1~K8 unresolved           | **All of K1~K9 resolved** (K6 corrected as a misclassification) |
-| Tests                 | 7                               | **54**                                                        |
+| Known defects         | **K4·K7 unresolved** of `K1~K9`  | **All of `K1~K9` resolved** (K6 corrected as a misclassification) |
+| Tests                 | 20                              | **54**                                                        |
 
 ---
 
@@ -601,6 +601,12 @@ Defects are not hidden — all of them are recorded as `K1~K9` in `docs/1-SPEC.m
 | **K7** | `authorizeHttpRequests` was unset — protection relied entirely on `@PreAuthorize`               | Added URL-level authorization as a **floor** so an endpoint missing the annotation is not left open |
 | **K8** | Only `"Expired"` counted as expiry, so **a broken token was handed straight back with a 200**   | Every validation failure now triggers reissue. Reissue happens only after `refreshToken` is verified |
 | **K9** | `filterChain.doFilter()` sat inside `try`, so **even controller/DB exceptions became `ERROR_ACCESS_TOKEN` 401** | Moved the chain call outside `try`. Authentication ends there; later exceptions are left untouched |
+
+> **K8 was fixed differently here than in security-jwt-agents** — that repository **rejects with a 401** any token
+> invalid for a reason other than expiry. Here, following the OAuth2 `refresh_token` grant reading in which the
+> `refreshToken` *is* the credential, such a token simply **triggers reissue**; the accessToken is only a hint
+> answering "do I need a new one?". Both stop the actual K8 defect — handing a broken token back with a 200.
+> **Neither is a bug.**
 
 **⚪ Corrected — K6**
 

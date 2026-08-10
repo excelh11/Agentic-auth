@@ -115,7 +115,7 @@ npm run dev                    # http://localhost:5173
 
 | 문서 | 내용 |
 |---|---|
-| [../docs/1-SPEC.md](../docs/1-SPEC.md) | ① **필수 기능에 대한 설명** — `F1~F8`, 에러 코드 계약, 알려진 결함 `K1~K8` |
+| [../docs/1-SPEC.md](../docs/1-SPEC.md) | ① **필수 기능에 대한 설명** — `F1~F13`, 에러 코드 계약, 알려진 결함 `K1~K9` |
 | [../docs/2-PLAN.md](../docs/2-PLAN.md) | ② **기능 구현에 필요한 기술 목록** — 사용/금지 API, 필터 흐름, 설계 규칙 |
 | [../docs/3-TEST.md](../docs/3-TEST.md) | ③ **테스트하는 방법** — 테스트 코드, curl, 회귀 체크리스트 20항목 |
 
@@ -139,25 +139,9 @@ SPEC ──→ PLAN ──→ TASKS ──→ IMPLEMENT
 
 ## 5. 알려진 결함
 
-[`../docs/1-SPEC.md`](../docs/1-SPEC.md)에 K1~K8로 기록해 두었다.
+`K1~K9` 전부 [`../docs/1-SPEC.md`](../docs/1-SPEC.md)에 기록해 두었다 —
+**현재 미해결 항목은 없고**, `K6`은 결함이 아니었던 것으로 **정정**했다.
+항목별 조치 내역은 [루트 README](../README.md)의 「백엔드 코드의 알려진 결함」에 있다.
 
-**남아 있는 것**
-
-| # | 내용 |
-|---|---|
-| K4 | JWT 시크릿 키가 `JWTUtil`에 하드코딩 — 공개된 예시 키로 의도한 것 |
-| K6 | jjwt 0.11.5의 deprecated API 사용 |
-| K7 | `authorizeHttpRequests` 미설정 — URL 레벨 인가 없음 |
-| K8 | `checkExpiredToken()`이 `"Expired"`만 만료로 봐서, 형식이 깨진 토큰을 "아직 유효"로 판정 |
-
-**해결된 것**
-
-| # | 내용 | 조치 |
-|---|---|---|
-| K1 | `Authorization` 헤더가 null이면 NPE | `Bearer ` 접두어를 검사 전에 확인 · `log.warn`으로 원인 기록 |
-| K2 | 인증 실패도 HTTP 200 | `JWTCheckFilter` · `APILoginFailHandler` 모두 **401** |
-| K3 | JWT 예외에 `ResponseEntity.ok()` | `status(UNAUTHORIZED)` — **401** |
-| K5 | `pw`(BCrypt 해시)가 JWT claims에 포함 | claims에서 제거 · credentials에 `null` (**F1 응답 계약 변경**) |
-
-> 인증 실패는 이제 **401**로 나간다. 다만 프론트는 여전히 **본문의 에러 코드로 분기한다** —
-> 401 하나에 `ERROR_LOGIN` · `ERROR_ACCESS_TOKEN` · `Expired` · `INVALID_STRING`이 모두 들어오기 때문이다.
+> 표를 여기에 다시 두지 않는 이유 — 같은 표가 두 군데 있으면 한쪽만 갱신돼 어긋난다.
+> 실제로 그렇게 어긋난 적이 있어서 이 섹션을 포인터로 바꿨다.
