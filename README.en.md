@@ -94,7 +94,7 @@ That one aimed to **"see with your own eyes where Spring Security + JWT blocks a
 | Unit of authority     | Role (`ROLE_USER`)              | Role **+ action-level scope** (`sample:read`)                  |
 | Revocation            | Impossible (no token revocation)| **Revoke one agent only** — the user is not logged out        |
 | Auditing              | Scattered logs                  | **Delegator + actor recorded as a pair**                      |
-| Known defects         | **K4·K6·K7 unresolved** of `K1~K9` | **All of `K1~K9` resolved** (K6 corrected as a misclassification) |
+| Known defects         | **K4·K7 unresolved** of `K1~K9`  | **All of `K1~K9` resolved** (K6 corrected as a misclassification) |
 | Tests                 | 21                              | **54**                                                        |
 
 ---
