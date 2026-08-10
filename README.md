@@ -1,6 +1,4 @@
-<br>
-
-# agentic-auth
+# Agentic-auth
 
 **한국어** · [English](README.en.md) · [中文](README.zh-CN.md)
 
