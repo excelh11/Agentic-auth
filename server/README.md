@@ -29,7 +29,8 @@ mysql -u root -p < db/schema.sql
 `agenticauthdb` 데이터베이스와 `aauthuser` / `aauthpw` 계정이 만들어진다.
 **테이블은 만들 필요 없다** — `ddl-auto=update` 가 첫 기동 때 자동 생성한다.
 
-접속 정보를 바꾸려면 [`src/main/resources/application.properties`](src/main/resources/application.properties)도 같이 고친다.
+접속 정보를 바꾸려면 `src/main/resources/application.properties` 도 같이 고친다.
+이 파일은 `.gitignore` 대상이라 저장소에 없다 — [`application.properties.example`](src/main/resources/application.properties.example) 을 복사해서 값을 채운다.
 
 ### ② 테스트 계정 생성 (최초 1회)
 

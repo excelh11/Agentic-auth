@@ -447,7 +447,7 @@ AWS Kiro、GitHub Spec Kit 等都在解决同一个问题。
 | [`docs/0-RULES.md`](docs/0-RULES.md) | **工作规则** —— 本仓库真实发生过的事故，附带依据        |
 | [`docs/1-SPEC.md`](docs/1-SPEC.md)   | 功能规范 `F1~F13`、错误码契约、已知缺陷 `K1~K9`         |
 | [`docs/2-PLAN.md`](docs/2-PLAN.md)   | 可用技术、禁用 API、请求处理流程                        |
-| [`docs/3-TEST.md`](docs/3-TEST.md)   | 测试代码模板、37 项回归检查清单                         |
+| [`docs/3-TEST.md`](docs/3-TEST.md)   | 测试代码模板、39 项回归检查清单                         |
 
 ### 迁移到其他项目
 

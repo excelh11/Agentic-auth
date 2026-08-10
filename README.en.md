@@ -452,7 +452,7 @@ The agents judge only from these documents. **When the spec changes, the documen
 | [`docs/0-RULES.md`](docs/0-RULES.md) | **Working rules** — things that actually went wrong here, with evidence |
 | [`docs/1-SPEC.md`](docs/1-SPEC.md)   | Functional spec `F1~F13`, the error-code contract, known defects `K1~K9` |
 | [`docs/2-PLAN.md`](docs/2-PLAN.md)   | Available technologies, forbidden APIs, request-processing flow |
-| [`docs/3-TEST.md`](docs/3-TEST.md)   | Test-code templates, a 37-item regression checklist            |
+| [`docs/3-TEST.md`](docs/3-TEST.md)   | Test-code templates, a 39-item regression checklist            |
 
 ### Taking it to another project
 
